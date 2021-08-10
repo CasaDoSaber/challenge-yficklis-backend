@@ -1,61 +1,91 @@
-# Tagando repositórios estrelados do GitHub
-## Este projeto tem por objetivo criar um breve sistema backend que consome apis publicas do Github para adicionar tags a um repositório estrelado por um usuario Git
+# Github tag stars
 
-## Status do Projeto
-<h4 align="center"> 
-	Concluído 🚀
-</h4>
+## Introduction
 
-### Features
+This is our programming exercise. Our goal is to evaluate your programming skills, the ability to make technical decisions and to document the work done.
 
-- [x] Busca repositório estrelados de um usuário
-- [x] Gerencia tags de repositórios(CRUD)
-- [x] Filtrar repositórios por tags
-- [x] Serviço que sugere tags mais utilizadas
+## What we will evaluate
 
-### Pré-requisitos
+1. README.md is well written, with the instructions needed to run the application, etc;
+2. The code is well written, clean and cohesive;
+3. Implementation of the solution is working as expected;
+4. There are well written automated tests (i.e., the unit and integration tests cover the expected behavior);
+5. There is linter/static code analysis;
+6. RESTful API design needs to be implemented correctly using the HTTP verbs and the proper Status Code;
+7. An API documentation has to be delivered with comprehensible and maintainable format;
 
-Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[PHP](https://www.php.net/downloads) a versão utilizada para o desenvolvimento da aplicação foi a "PHP 7.3.29"
-Em sistemas operacionais Linux ou Mac, a instalação do PHP é bastante simplificada, bastando apenas utilizar o comando de instalação:
-Linux - sudo apt-get install php7.3
-Mac - brew install php@7.3
-No Windows, você precisará baixar e extrair o arquivo php-7.3.29-nts-Win32-VC15-x64.zip baixado no site do php.net. Em seguida, você deverá abrir o menu Iniciar e procurar por "Editar as variáveis de ambiente para a sua conta".
+We want to evaluate your ability to deliver code with the best programming practices, with sufficient documentation for other developers to understand what you did and actively contribute to the project.
 
-[sqlite] deve-se configurar a database utilizada na pasta do PHP, no nosso caso o SQLite
-localizar a linha ";extension=pdo_sqlite" no arquivo php.ini e remover o ';'
 
-[curl] habilitar o recurso de requisições.
-adicionar a linha "extension=php_curl.dll" no arquivo php.ini
+## How to share your code with us
 
-[composer](https://getcomposer.org/) a versão utilizada para o desenvolvimento da aplicação foi a "Composer version 2.1.5"
-No Linux e no Mac, bastará copiar o código em "Command-line installation" e executá-lo no terminal. No Windows, basta baixar e executar o instalador Composer-Setup.exe.
+We want you to experience how we work on a daily basis. That's why we ask you to use the best standard gitflow practices and also the following instructions:
 
-### 🎲 Rodando o Back End (servidor)
+Create a README.md file describing how to configure your project, containing the commands that must be executed to run the software and the tests.
+If you have made use of any Linter (esling, rubycop, creed, etc.), send the file together with the project.
+Open a single pull request to the main branch of the private repository that we have invited you to contribute with all the code of the exercise.
 
-```bash
-# Clone este repositório
-$ git clone <https://github.com/CasaDoSaber/challenge-alan-backend.git>
+# Exercise ✏️
 
-# Acesse a pasta do projeto no terminal/cmd
-$ cd challenge-alan-backend\githubTagStar
+GitHub is a social network of programmers that has an interesting functionality that allows you to ["star" other users repositories](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars). The users activate that just by pressing a button. But it has some limitations when we consider GitHub heavy users.
 
-# Instale as dependências
-$ composerinstall
+You are an active GitHub user, who is always looking for new projects and enjoying those who are interesting. You would like to be able to add a label or tag to a repository so that it can be found later. For example, you've found a repository called `react` and you would like to add `javascript` and `frontend` tags to it. Because GitHub does not have this functionality, you want to build a simple system that can help with this task
 
-# Execute a aplicação em modo de desenvolvimento
-$ php artisan serve
 
-# O servidor inciará na porta:8000 - acesse <http://localhost:8000>
+## Use case
+
+You are an active GitHub user, who is always looking for new and interesting projects. You want to add a label or tag to a repository so that it can be found later. For example: you've found a repository called react and you would like to add javascript and frontend tags to it. Because GitHub does not have this functionality, you want to build a simple system that can help you with this task.
+
+## Requirements of the exercise
+
+
+- [Required] Retrive starred repositories of a user's GitHub profile;
+- [Required] Manage retrieved repositories tags (i.e., add, edit, delete);
+- [Required] Filter repositories by tags;
+- [Optional] Tags suggestions based on the overral use of the tag in other repositores;
+- [Optional] A frontend graphical app to interact with the backend;
+
+## User stories
+
+### Story 1: Obtain starred repositories
+
+```
+As a GitHub user
+I want to provide my username
+So that I can see all repositories that I've starred
 ```
 
-### 🛠 Tecnologias
+Requirements
 
-As seguintes ferramentas foram usadas na construção do projeto:
+- You should get starred repositories using the GitHub Public API.
+- The information that must be retrieved is: repository ID, repository name, description, HTTP URL, and language.
 
-- [PHP](https://www.php.net/)
-- [Laravel](https://laravel.com/docs/5.8)
-- [Sqlite](https://www.sqlite.org/index.html)
-- [Api Rest](https://curl.se/)
+### Story 2: Add tags to repositories
 
+```
+As a GitHub user
+I want to be able to add tags to repositories that I've starred
+So that I can easily find them later by tags
+```
 
+Requirements
+
+- A repository cannot have duplicated tags.
+
+### Story 3: Search repositories by tags
+
+```
+As a GitHub user
+I want to be able to search by a specific tag
+So that I can see my starred repositories that I've added this tag
+```
+
+Requirements
+
+- The search field should work for queries with strings in half (e.g., by typing "doc", the "docker" and "ex_doc" repositories must be returned).
+
+## Back-end instructions
+
+- It is up to the candidate decide how to persist the data.
+- Each action must have its specific route respecting the convention of http verb and status code.
+- Repositories and their tags must persist at a database or file system.
